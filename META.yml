@@ -16,9 +16,9 @@ name: MooseX-Role-Tempdir
 provides:
   MooseX::Role::Tempdir:
     file: lib/MooseX/Role/Tempdir.pm
-    version: 0.01
+    version: 0.02
 requires:
   perl: 5.006
 resources:
   license: http://dev.perl.org/licenses/
-version: 0.01
+version: 0.02

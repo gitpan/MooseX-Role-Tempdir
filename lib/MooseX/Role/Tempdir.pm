@@ -8,11 +8,11 @@ MooseX::Role::Tempdir - Moose role to provide a temporary directory
 
 =head1 VERSION
 
-Version 0.01
+Version 0.02
 
 =cut
 
-our $VERSION = '0.01';
+our $VERSION = '0.02';
 
 
 =head1 SYNOPSIS
@@ -54,7 +54,7 @@ has 'tmpdir_opts' => (
 
 sub _make_temp_dir {
   my $self = shift;
-  my $tmpdir = File::Temp->newdir();
+  my $tmpdir = File::Temp->newdir(%{$self->tmpdir_opts()});
   return $tmpdir;
 }
 
