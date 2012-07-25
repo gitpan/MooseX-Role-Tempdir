@@ -1,0 +1,24 @@
+---
+abstract: 'Moose role to provide a temporary directory'
+author:
+  - 'Brad Barden <iamb@mifflinet.net>'
+build_requires:
+  Test::More: 0
+configure_requires:
+  Module::Build: 0.40
+dynamic_config: 1
+generated_by: 'Module::Build version 0.4001, CPAN::Meta::Converter version 2.120630'
+license: perl
+meta-spec:
+  url: http://module-build.sourceforge.net/META-spec-v1.4.html
+  version: 1.4
+name: MooseX-Role-Tempdir
+provides:
+  MooseX::Role::Tempdir:
+    file: lib/MooseX/Role/Tempdir.pm
+    version: 0.01
+requires:
+  perl: 5.006
+resources:
+  license: http://dev.perl.org/licenses/
+version: 0.01

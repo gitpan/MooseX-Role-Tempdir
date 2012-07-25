@@ -1,0 +1,50 @@
+MooseX-Role-Tempdir
+
+This is a very simple Moose role that provides an attribute 'tmpdir' and
+creates a temporary directory (via File::Temp) to go along with it. One
+temporary directory will be created for every object with this role, so keep
+that in mind if you're going crazy with lots of objects or
+creation/destruction.
+
+
+INSTALLATION
+
+To install this module, run the following commands:
+
+	perl Build.PL
+	./Build
+	./Build test
+	./Build install
+
+SUPPORT AND DOCUMENTATION
+
+After installing, you can find documentation for this module with the
+perldoc command.
+
+    perldoc MooseX::Role::Tempdir
+
+You can also look for information at:
+
+    RT, CPAN's request tracker (report bugs here)
+        http://rt.cpan.org/NoAuth/Bugs.html?Dist=MooseX-Role-Tempdir
+
+    AnnoCPAN, Annotated CPAN documentation
+        http://annocpan.org/dist/MooseX-Role-Tempdir
+
+    CPAN Ratings
+        http://cpanratings.perl.org/d/MooseX-Role-Tempdir
+
+    Search CPAN
+        http://search.cpan.org/dist/MooseX-Role-Tempdir/
+
+
+LICENSE AND COPYRIGHT
+
+Copyright (C) 2012 Brad Barden
+
+This program is free software; you can redistribute it and/or modify it
+under the terms of either: the GNU General Public License as published
+by the Free Software Foundation; or the Artistic License.
+
+See http://dev.perl.org/licenses/ for more information.
+
