@@ -13,6 +13,7 @@ my $builder = Module::Build->new(
     },
     requires => {
         'perl' => 5.006,
+        'MooseX::Role::Parameterized' => 1.0,
     },
     add_to_cleanup      => [ 'MooseX-Role-Tempdir-*' ],
     create_makefile_pl => 'traditional',

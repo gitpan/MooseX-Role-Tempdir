@@ -1,18 +1,18 @@
 package MooseX::Role::Tempdir;
-use Moose::Role;
+use MooseX::Role::Parameterized;
 use File::Temp qw//;
 
 =head1 NAME
 
-MooseX::Role::Tempdir - Moose role to provide a temporary directory
+MooseX::Role::Tempdir - Moose role to provide temporary directories
 
 =head1 VERSION
 
-Version 0.02
+Version 0.03
 
 =cut
 
-our $VERSION = '0.02';
+our $VERSION = '0.03';
 
 
 =head1 SYNOPSIS
@@ -25,38 +25,49 @@ our $VERSION = '0.02';
     open($newfh, '>', $self->tmpdir()."/newfile") or die "ohno! $!";
     ...
 
-Alias the tmpdir function if you want it called something else
+You can also use parameters to tell what directories you want and/or specify
+tmpdir options. See L<File::Temp> for details on supported options.
 
-    with 'MooseX::Role::Tempdir' { -alias => { tmpdir => 'workdir' } };
+By default you will get a single temporary directory 'tmpdir' with the default
+options to File::Temp.
+
+    with 'MooseX::Role::Tempdir' => {
+      dirs => [ qw/tmpdir workdir fundir/ ],
+      tmpdir_opts => { DIR => '/my/alternate/tmp' },
+    };
 
     my $newfh;
-    open($newfh, '>', $self->workdir()."/newfile") or die "ohno! $!";
+    open($newfh, '>', $self->fundir()."/newfile") or die "ohno! $!";
 
 
 =cut
-has 'tmpdir' => (
-  is => 'ro',
-  isa => 'File::Temp::Dir',
-  lazy => 1,
-  builder => '_make_temp_dir',
+
+parameter 'dirs' => (
+  isa => 'ArrayRef[Str]',
+  default => sub { [ 'tmpdir' ] },
 );
 
-has 'tmpdir_opts' => (
-  is => 'ro',
+parameter 'tmpdir_opts' => (
   isa => 'HashRef',
+  default => sub { {} },
 );
 
-=head1 SUBROUTINES/METHODS
-
-=head2 There are some.
-
-=cut
-
-sub _make_temp_dir {
-  my $self = shift;
-  my $tmpdir = File::Temp->newdir(%{$self->tmpdir_opts()});
-  return $tmpdir;
-}
+role {
+  my $p = shift;
+  my $opts = $p->tmpdir_opts();
+  for my $dir (@{$p->dirs()}) {
+    has $dir => (
+      is => 'ro',
+      isa => 'File::Temp::Dir',
+      required => 1,
+      lazy => 1,
+      default => sub {
+        my $p = shift;
+        return File::Temp->newdir(%{$opts});
+      },
+    );
+  }
+};
 
 
 =head1 AUTHOR

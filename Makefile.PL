@@ -9,7 +9,8 @@ WriteMakefile
   'EXE_FILES' => [],
   'VERSION_FROM' => 'lib/MooseX/Role/Tempdir.pm',
   'PREREQ_PM' => {
-                   'Test::More' => 0
+                   'Test::More' => 0,
+                   'MooseX::Role::Parameterized' => '1'
                  }
 )
 ;

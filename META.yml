@@ -1,5 +1,5 @@
 ---
-abstract: 'Moose role to provide a temporary directory'
+abstract: 'Moose role to provide temporary directories'
 author:
   - 'Brad Barden <iamb@mifflinet.net>'
 build_requires:
@@ -16,9 +16,10 @@ name: MooseX-Role-Tempdir
 provides:
   MooseX::Role::Tempdir:
     file: lib/MooseX/Role/Tempdir.pm
-    version: 0.02
+    version: 0.03
 requires:
+  MooseX::Role::Parameterized: 1
   perl: 5.006
 resources:
   license: http://dev.perl.org/licenses/
-version: 0.02
+version: 0.03
